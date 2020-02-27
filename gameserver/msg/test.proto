@@ -1,0 +1,5 @@
+package msg;
+
+message Hello {
+required string name = 1;
+}
