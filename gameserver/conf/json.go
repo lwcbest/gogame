@@ -2,8 +2,9 @@ package conf
 
 import (
 	"encoding/json"
-	"myGo/gameserver/leaf/log"
 	"io/ioutil"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 var Server struct {

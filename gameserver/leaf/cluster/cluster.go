@@ -1,10 +1,11 @@
 package cluster
 
 import (
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/network"
 	"math"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/network"
 )
 
 var (
@@ -46,9 +47,6 @@ func Destroy() {
 	}
 }
 
-
 func newSession(conn *network.TCPConn) *network.Session {
-	return &network.Session{
-
-	}
+	return &network.Session{}
 }

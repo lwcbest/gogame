@@ -2,7 +2,8 @@ package util_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/util"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/util"
 )
 
 func ExampleMap() {

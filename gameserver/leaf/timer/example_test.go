@@ -2,8 +2,9 @@ package timer_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/timer"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/timer"
 )
 
 func ExampleTimer() {

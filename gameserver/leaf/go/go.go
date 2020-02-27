@@ -2,10 +2,11 @@ package g
 
 import (
 	"container/list"
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/log"
 	"runtime"
 	"sync"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 // one Go per goroutine (goroutine not safe)

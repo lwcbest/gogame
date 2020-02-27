@@ -2,7 +2,8 @@ package network
 
 import (
 	"io"
-	"myGo/gameserver/leaf/log"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type PkgParser struct {

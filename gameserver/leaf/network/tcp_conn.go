@@ -1,9 +1,10 @@
 package network
 
 import (
-	"myGo/gameserver/leaf/log"
 	"net"
 	"sync"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type ConnSet map[net.Conn]struct{}

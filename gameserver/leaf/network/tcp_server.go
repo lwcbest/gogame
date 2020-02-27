@@ -1,10 +1,11 @@
 package network
 
 import (
-	"myGo/gameserver/leaf/log"
 	"net"
 	"sync"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type TCPServer struct {
@@ -48,7 +49,7 @@ func (server *TCPServer) init() {
 	server.conns = make(ConnSet)
 
 	pkgParser := NewPkgParser()
-	server.pkgParser= pkgParser
+	server.pkgParser = pkgParser
 }
 
 func (server *TCPServer) run() {

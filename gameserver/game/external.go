@@ -1,7 +1,7 @@
 package game
 
 import (
-	"myGo/gameserver/game/internal"
+	"github.com/lwcbest/gogame/gameserver/game/internal"
 )
 
 var (

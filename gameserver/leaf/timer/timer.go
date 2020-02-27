@@ -1,10 +1,11 @@
 package timer
 
 import (
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/log"
 	"runtime"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 // one dispatcher per goroutine (goroutine not safe)

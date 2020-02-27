@@ -1,8 +1,9 @@
 package log_test
 
 import (
-	"myGo/gameserver/leaf/log"
 	l "log"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 func Example() {

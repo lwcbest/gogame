@@ -4,11 +4,12 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/golang/protobuf/proto"
-	"myGo/gameserver/leaf/chanrpc"
-	"myGo/gameserver/leaf/log"
 	"math"
 	"reflect"
+
+	"github.com/golang/protobuf/proto"
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 // -------------------------

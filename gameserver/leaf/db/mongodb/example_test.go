@@ -2,7 +2,8 @@ package mongodb_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/db/mongodb"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/db/mongodb"
 	"gopkg.in/mgo.v2"
 )
 

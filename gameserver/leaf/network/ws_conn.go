@@ -1,10 +1,11 @@
 package network
 
 import (
-	"github.com/gorilla/websocket"
-	"myGo/gameserver/leaf/log"
 	"net"
 	"sync"
+
+	"github.com/gorilla/websocket"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type WebsocketConnSet map[*websocket.Conn]struct{}
@@ -94,7 +95,7 @@ func (wsConn *WSConn) RemoteAddr() net.Addr {
 func (wsConn *WSConn) ReadMsg() (*Package, error) {
 	_, b, err := wsConn.conn.ReadMessage()
 	log.Debug(string(b))
-	return &Package{},err
+	return &Package{}, err
 	//return b, err
 }
 

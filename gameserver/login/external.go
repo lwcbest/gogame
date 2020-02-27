@@ -1,7 +1,7 @@
 package login
 
 import (
-	"myGo/gameserver/login/internal"
+	"github.com/lwcbest/gogame/gameserver/login/internal"
 )
 
 var (

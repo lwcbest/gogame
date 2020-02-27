@@ -2,8 +2,9 @@ package chanrpc_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/chanrpc"
 	"sync"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
 )
 
 func Example() {

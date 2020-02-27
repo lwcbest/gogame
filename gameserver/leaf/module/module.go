@@ -1,10 +1,11 @@
 package module
 
 import (
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/log"
 	"runtime"
 	"sync"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type Module interface {

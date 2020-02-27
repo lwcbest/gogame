@@ -1,9 +1,10 @@
 package network
 
 import (
-	"myGo/gameserver/leaf/log"
 	"net"
 	"reflect"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type Session struct {

@@ -5,9 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"math"
-	"myGo/gameserver/leaf/chanrpc"
-	"myGo/gameserver/leaf/log"
 	"reflect"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 const MSG_Route_Limit = 255

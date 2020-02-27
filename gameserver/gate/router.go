@@ -1,8 +1,8 @@
 package gate
 
 import (
-	"myGo/gameserver/game"
-	"myGo/gameserver/msg"
+	"github.com/lwcbest/gogame/gameserver/game"
+	"github.com/lwcbest/gogame/gameserver/msg"
 )
 
 //register router

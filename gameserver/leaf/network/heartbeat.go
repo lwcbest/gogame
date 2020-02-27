@@ -1,9 +1,10 @@
 package network
 
 import (
-	"myGo/gameserver/leaf/log"
-	"myGo/gameserver/leaf/timer"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"github.com/lwcbest/gogame/gameserver/leaf/timer"
 )
 
 const HeartbeatDuration int = 3000

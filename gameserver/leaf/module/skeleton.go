@@ -1,11 +1,12 @@
 package module
 
 import (
-	"myGo/gameserver/leaf/chanrpc"
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
 
-	"myGo/gameserver/leaf/go"
-	"myGo/gameserver/leaf/timer"
 	"time"
+
+	g "github.com/lwcbest/gogame/gameserver/leaf/go"
+	"github.com/lwcbest/gogame/gameserver/leaf/timer"
 )
 
 type Skeleton struct {

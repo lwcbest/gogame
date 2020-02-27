@@ -3,9 +3,10 @@ package chanrpc
 import (
 	"errors"
 	"fmt"
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/log"
 	"runtime"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 // one server per goroutine (goroutine not safe)

@@ -1,12 +1,13 @@
 package leaf
 
 import (
-	"myGo/gameserver/leaf/cluster"
-	"myGo/gameserver/leaf/conf"
-	"myGo/gameserver/leaf/log"
-	"myGo/gameserver/leaf/module"
 	"os"
 	"os/signal"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/cluster"
+	"github.com/lwcbest/gogame/gameserver/leaf/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"github.com/lwcbest/gogame/gameserver/leaf/module"
 )
 
 func Run(mods ...module.Module) {

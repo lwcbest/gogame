@@ -1,10 +1,11 @@
 package network
 
 import (
-	"myGo/gameserver/leaf/log"
 	"net"
 	"sync"
 	"time"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type TCPClient struct {
@@ -14,12 +15,12 @@ type TCPClient struct {
 	ConnectInterval time.Duration
 	PendingWriteNum int
 	AutoReconnect   bool
-	NewSession       func(*TCPConn) *Session
+	NewSession      func(*TCPConn) *Session
 	conns           ConnSet
 	wg              sync.WaitGroup
 	closeFlag       bool
 
-	pkgParser    *PkgParser
+	pkgParser *PkgParser
 }
 
 func (client *TCPClient) Start() {

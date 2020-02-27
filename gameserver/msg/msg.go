@@ -1,7 +1,7 @@
 package msg
 
 import (
-	"myGo/gameserver/leaf/network"
+	"github.com/lwcbest/gogame/gameserver/leaf/network"
 )
 
 var Processor = network.NewHybridProcessor()

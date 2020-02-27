@@ -2,8 +2,9 @@ package g_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/go"
 	"time"
+
+	g "github.com/lwcbest/gogame/gameserver/leaf/go"
 )
 
 func Example() {

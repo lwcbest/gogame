@@ -1,9 +1,10 @@
 package gamedata
 
 import (
-	"myGo/gameserver/leaf/log"
-	"myGo/gameserver/leaf/recordfile"
 	"reflect"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"github.com/lwcbest/gogame/gameserver/leaf/recordfile"
 )
 
 func readRf(st interface{}) *recordfile.RecordFile {

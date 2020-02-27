@@ -1,9 +1,9 @@
 package base
 
 import (
-	"myGo/gameserver/leaf/chanrpc"
-	"myGo/gameserver/leaf/module"
-	"myGo/gameserver/conf"
+	"github.com/lwcbest/gogame/gameserver/conf"
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
+	"github.com/lwcbest/gogame/gameserver/leaf/module"
 )
 
 func NewSkeleton() *module.Skeleton {

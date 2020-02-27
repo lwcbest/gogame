@@ -2,12 +2,13 @@ package network
 
 import (
 	"crypto/tls"
-	"github.com/gorilla/websocket"
-	"myGo/gameserver/leaf/log"
 	"net"
 	"net/http"
 	"sync"
 	"time"
+
+	"github.com/gorilla/websocket"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type WSServer struct {

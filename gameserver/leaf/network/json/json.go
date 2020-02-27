@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"myGo/gameserver/leaf/chanrpc"
-	"myGo/gameserver/leaf/log"
 	"reflect"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
+	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type Processor struct {

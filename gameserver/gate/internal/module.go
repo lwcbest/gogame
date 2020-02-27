@@ -1,10 +1,10 @@
 package internal
 
 import (
-	"myGo/gameserver/conf"
-	"myGo/gameserver/game"
-	"myGo/gameserver/leaf/network"
-	"myGo/gameserver/msg"
+	"github.com/lwcbest/gogame/gameserver/conf"
+	"github.com/lwcbest/gogame/gameserver/game"
+	"github.com/lwcbest/gogame/gameserver/leaf/network"
+	"github.com/lwcbest/gogame/gameserver/msg"
 )
 
 type Module struct {

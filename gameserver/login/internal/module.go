@@ -1,8 +1,8 @@
 package internal
 
 import (
-	"myGo/gameserver/leaf/module"
-	"myGo/gameserver/base"
+	"github.com/lwcbest/gogame/gameserver/base"
+	"github.com/lwcbest/gogame/gameserver/leaf/module"
 )
 
 var (

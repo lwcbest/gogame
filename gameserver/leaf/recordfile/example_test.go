@@ -2,7 +2,8 @@ package recordfile_test
 
 import (
 	"fmt"
-	"myGo/gameserver/leaf/recordfile"
+
+	"github.com/lwcbest/gogame/gameserver/leaf/recordfile"
 )
 
 func Example() {
