@@ -23,7 +23,7 @@ func (m *Module) OnInit() {
 		TCPAddr:         conf.Server.TCPAddr,
 		LenMsgLen:       conf.LenMsgLen,
 		LittleEndian:    conf.LittleEndian,
-		Processor:       msg.Processor,
+		Processor:       msg.Instance,
 		SessionChanRPC:  game.ChanRPC,
 	}
 }

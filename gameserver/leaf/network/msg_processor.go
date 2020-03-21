@@ -113,35 +113,20 @@ func (p *Processor) SetRawHandler(msgName string, msgRawHandler MsgHandler) {
 }
 
 // goroutine safe
-func (p *Processor) Route(msg interface{}, userData interface{}) error {
-	// raw
-	if msgRaw, ok := msg.(MsgRaw); ok {
-		i, ok := p.msgInfoMap[msgRaw.msgID]
-		if !ok {
-			return fmt.Errorf("message %v not registered", msgRaw.msgID)
-		}
-		if i.msgRawHandler != nil {
-			i.msgRawHandler([]interface{}{msgRaw.msgID, msgRaw.msgRawData, userData})
-		}
-		return nil
+func (p *Processor) Route(msg *Message, userData interface{}) error {
+	i, ok := p.msgInfoMap[msg.Route]
+	if !ok {
+		return fmt.Errorf("message %v not registered", msg.Route)
 	}
 
-	// json
-	msgType := reflect.TypeOf(msg)
-	if msgType == nil || msgType.Kind() != reflect.Ptr {
-		return errors.New("json message pointer required")
-	}
-	msgName := msgType.Elem().Name()
-	i, ok := p.msgInfoMap[msgName]
-	if !ok {
-		return fmt.Errorf("message %v not registered", msgName)
-	}
 	if i.msgHandler != nil {
 		i.msgHandler([]interface{}{msg, userData})
 	}
+
 	if i.msgRouter != nil {
-		i.msgRouter.Go(msgType, msg, userData)
+		i.msgRouter.Go(msg.Route, msg, userData)
 	}
+
 	return nil
 }
 

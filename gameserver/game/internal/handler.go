@@ -1,25 +1,22 @@
 package internal
 
 import (
-	"reflect"
-
 	"github.com/lwcbest/gogame/gameserver/leaf/log"
 	"github.com/lwcbest/gogame/gameserver/leaf/network"
-	"github.com/lwcbest/gogame/gameserver/msg"
 )
 
 func init() {
-	handler(&msg.Hello{}, handleHello)
+	handler("ReqGateGetConnector", handleHello)
 }
 
-func handler(m interface{}, h interface{}) {
-	skeleton.RegisterChanRPC(reflect.TypeOf(m), h)
+func handler(router string, h interface{}) {
+	skeleton.RegisterChanRPC(router, h)
 }
 
 func handleHello(args []interface{}) {
-	m := args[0].(*msg.Hello)
+	//m := args[0].(*msg.Hello)
 	session := args[1].(network.Session)
-	log.Debug("hello %v", m.GetName(), session)
+	log.Debug("hello %v", session)
 	//session.WriteMsg(&msg.Hello{
 	//	Name:proto.String("client"),
 	//})

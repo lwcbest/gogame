@@ -1,11 +1,12 @@
 package msg
 
 import (
+	SimonProto "github.com/lwcbest/gogame/gameserver/goproto"
 	"github.com/lwcbest/gogame/gameserver/leaf/network"
 )
 
-var Processor = network.NewHybridProcessor()
+var Instance = network.NewHybridProcessor()
 
 func init() {
-	Processor.Register(&Hello{})
+	Instance.Register(&SimonProto.ReqGateGetConnector{})
 }
