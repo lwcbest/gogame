@@ -4,8 +4,8 @@ import (
 	"math"
 	"time"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/conf"
-	"github.com/lwcbest/gogame/gameserver/leaf/network"
+	"gameserver/leaf/conf"
+	"gameserver/leaf/network"
 )
 
 var (

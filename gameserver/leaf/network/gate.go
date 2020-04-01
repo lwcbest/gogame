@@ -3,7 +3,7 @@ package network
 import (
 	"time"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
+	"gameserver/leaf/chanrpc"
 )
 
 type Gate struct {

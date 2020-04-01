@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/conf"
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/conf"
+	"gameserver/leaf/log"
 )
 
 // one Go per goroutine (goroutine not safe)

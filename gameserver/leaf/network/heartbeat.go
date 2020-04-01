@@ -47,5 +47,5 @@ func SendHeartbeat(s *Session) {
 	}
 
 	log.Debug("send heartbeat:", pkg)
-	s.WriteMsg(pkg)
+	s.WritePkg(pkg)
 }

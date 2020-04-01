@@ -4,10 +4,10 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/cluster"
-	"github.com/lwcbest/gogame/gameserver/leaf/conf"
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
-	"github.com/lwcbest/gogame/gameserver/leaf/module"
+	"gameserver/leaf/cluster"
+	"gameserver/leaf/conf"
+	"gameserver/leaf/log"
+	"gameserver/leaf/module"
 )
 
 func Run(mods ...module.Module) {

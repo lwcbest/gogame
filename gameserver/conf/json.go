@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/log"
 )
 
 var Server struct {

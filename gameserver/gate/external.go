@@ -1,7 +1,7 @@
 package gate
 
 import (
-	"github.com/lwcbest/gogame/gameserver/gate/internal"
+	"gameserver/gate/internal"
 )
 
 var (

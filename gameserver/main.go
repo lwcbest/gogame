@@ -1,12 +1,17 @@
 package main
 
 import (
-	"github.com/lwcbest/gogame/gameserver/conf"
-	"github.com/lwcbest/gogame/gameserver/game"
-	"github.com/lwcbest/gogame/gameserver/gate"
-	"github.com/lwcbest/gogame/gameserver/leaf"
-	lconf "github.com/lwcbest/gogame/gameserver/leaf/conf"
-	"github.com/lwcbest/gogame/gameserver/login"
+	"gameserver/conf"
+
+	"gameserver/game"
+
+	"gameserver/gate"
+
+	"gameserver/leaf"
+
+	lconf "gameserver/leaf/conf"
+
+	"gameserver/login"
 )
 
 func main() {

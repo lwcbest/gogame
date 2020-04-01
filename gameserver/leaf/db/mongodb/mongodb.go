@@ -5,7 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/log"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

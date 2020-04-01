@@ -2,8 +2,6 @@ package network
 
 import (
 	"io"
-
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
 )
 
 type PkgParser struct {
@@ -33,12 +31,10 @@ func (p *PkgParser) Read(conn *TCPConn) (*Package, error) {
 	}
 	pkgType := header[0]
 	bodyLength := header[1]<<16 | header[2]<<8 | header[3]
-	log.Debug("2.read header fullend?:", header, pkgType, bodyLength)
 	body := make([]byte, bodyLength)
 	if _, err := io.ReadFull(conn, body); err != nil {
 		return nil, err
 	}
-	log.Debug("3.read body", body)
 
 	pkg := &Package{
 		pkgType: PackageType(pkgType),
@@ -46,7 +42,6 @@ func (p *PkgParser) Read(conn *TCPConn) (*Package, error) {
 		body:    body,
 	}
 
-	log.Debug("4.pkg= ", pkg)
 	return pkg, nil
 }
 

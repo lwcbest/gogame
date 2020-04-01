@@ -4,7 +4,9 @@ import (
 	"net"
 	"reflect"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/log"
+
+	"github.com/golang/protobuf/proto"
 )
 
 type Session struct {
@@ -22,7 +24,6 @@ func (s *Session) Run() {
 			log.Debug("read message: %v", err)
 			break
 		}
-		log.Debug("[session run]read pkg:", pkg)
 		if s.gate.Processor != nil {
 			msg := s.gate.Processor.HandlePackage(s, pkg)
 			if msg == nil {
@@ -30,7 +31,7 @@ func (s *Session) Run() {
 			}
 			err = s.gate.Processor.Route(msg, s)
 			if err != nil {
-				log.Debug("route message error: %v", err)
+				log.Error("route message error: %v", err)
 				break
 			}
 		}
@@ -46,7 +47,19 @@ func (s *Session) OnClose() {
 	}
 }
 
-func (s *Session) WriteMsg(pkg *Package) {
+func (s *Session) WriteRes(route string, reqId uint, res proto.Message) {
+	log.Release("[Response][%d][%s] %v", reqId, route, res)
+	//resMsg := res.(*proto.Message)
+	msg := BuildMsg(MSG_REQUEST, reqId, route, res)
+	s.WriteMsg(msg)
+}
+
+func (s *Session) WriteMsg(msg *Message) {
+	pkg := BuildPackage(msg, PKG_DATA)
+	s.WritePkg(pkg)
+}
+
+func (s *Session) WritePkg(pkg *Package) {
 	if s.gate.Processor != nil {
 		err := s.conn.WritePkg(pkg)
 		if err != nil {

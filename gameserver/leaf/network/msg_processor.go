@@ -7,8 +7,11 @@ import (
 	"math"
 	"reflect"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/chanrpc"
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/chanrpc"
+
+	"gameserver/leaf/log"
+
+	"github.com/golang/protobuf/proto"
 )
 
 const MSG_Route_Limit = 255
@@ -131,7 +134,7 @@ func (p *Processor) Route(msg *Message, userData interface{}) error {
 }
 
 func (p *Processor) HandlePackage(s *Session, pkg *Package) *Message {
-	log.Debug("handle package", pkg)
+	log.Debug("[HandlePackage] handle package: %v", pkg)
 	switch pkg.pkgType {
 	case PKG_HANDSHAKE:
 		sendHandShake(s)
@@ -139,12 +142,41 @@ func (p *Processor) HandlePackage(s *Session, pkg *Package) *Message {
 		s.heartbeat.Handle()
 	case PKG_DATA:
 		_, msg := MsgDecode(pkg.body)
+		log.Debug("[PKG_DATA]msg:%v", msg)
 		return &msg
 	case PKG_KICK:
 		log.Release("kick pkg %d", s.sid)
 	}
 
 	return nil
+}
+
+func BuildPackage(msg *Message, pkgType PackageType) *Package {
+	err, msgBuffer := MsgEncode(*msg)
+	if err != nil {
+		log.Error("message encode %v error: %v", reflect.TypeOf(msg), err)
+	}
+
+	pkg := &Package{
+		pkgType: pkgType,
+		body:    msgBuffer,
+	}
+
+	return pkg
+}
+
+func BuildMsg(mType MessageType, reqId uint, route string, data proto.Message) *Message {
+	dataByte, err := proto.Marshal(data)
+	if err != nil {
+		log.Error("proto marshal %v error: %v", reflect.TypeOf(data), err)
+	}
+
+	return &Message{
+		MsgType: mType,
+		Id:      reqId,
+		Route:   route,
+		Data:    dataByte,
+	}
 }
 
 func sendHandShake(s *Session) {
@@ -166,8 +198,8 @@ func sendHandShake(s *Session) {
 		length:  len(body),
 		body:    body,
 	}
-	log.Debug("send hand shake:", pkg)
-	s.WriteMsg(pkg)
+	log.Release("[SendHandShake]...")
+	s.WritePkg(pkg)
 }
 
 /// goroutine safe

@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -99,7 +100,8 @@ func (logger *Logger) doPrintf(level int, printLevel string, format string, a ..
 		panic("logger closed")
 	}
 
-	format = printLevel + format
+	_, filePath, c, _ := runtime.Caller(2)
+	format = fmt.Sprintf("%s[%s][%v] %s", printLevel, filePath, c, format)
 	var (
 		colPrefix string
 		colPosfix string

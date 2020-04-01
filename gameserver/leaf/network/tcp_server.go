@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/log"
 )
 
 type TCPServer struct {

@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/lwcbest/gogame/gameserver/leaf/conf"
-	"github.com/lwcbest/gogame/gameserver/leaf/log"
+	"gameserver/leaf/conf"
+
+	"gameserver/leaf/log"
 )
 
 // one server per goroutine (goroutine not safe)
