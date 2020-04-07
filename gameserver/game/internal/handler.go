@@ -2,7 +2,6 @@ package internal
 
 import (
 	SimonProto "gameserver/goproto"
-	"gameserver/leaf/log"
 	"gameserver/leaf/network"
 
 	"github.com/golang/protobuf/proto"
@@ -32,7 +31,6 @@ func handlerGateGetConnector(args []interface{}) {
 	proto.Marshal(res)
 
 	session.WriteRes(m.Route, m.Id, res)
-	log.Debug("msg: %v %v", req, session)
 }
 
 func handlerUserRegister(args []interface{}) {

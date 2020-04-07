@@ -3,3 +3,6 @@ gameserver/.idea/misc.xml
 gameserver/.idea/modules.xml
 gameserver/.idea/workspace.xml
 gameserver/.vscode/launch.json
+gameserver/go.mod
+gameserver/go.sum
+gameserver/main

@@ -1,0 +1,29 @@
+syntax = "proto3";  //标明proto版本
+
+package SimonProto;  //包名
+
+//一个message相当于一个类
+// 1,2,3不代表参数默认值，而是参数标签
+// repeated 可以理解为数组
+
+message ReqGateGetConnector {
+  string region = 1;
+}
+
+message ReqUserRegister {
+  string username = 1;
+  string password = 2;
+  string cFrom = 3;
+}
+
+message ReqUserGetAreas {
+  string username = 1;
+  string password = 2;
+}
+
+message ReqUserSelectArea {
+  int32 areaId = 1;
+  string username = 2;
+  string password = 3;
+  string appVersion = 4;
+}

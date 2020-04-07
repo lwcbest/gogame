@@ -1,0 +1,18 @@
+syntax = "proto3";  //标明proto版本
+
+package SimonProto;  //包名
+
+//一个message相当于一个类
+// 1,2,3不代表参数默认值，而是参数标签
+// repeated 可以理解为数组
+
+message PushModelMsg{
+    string fromUser=1;
+    string targetUser = 2;
+    string content = 3;
+    int32 sendTime=4;
+}
+
+message PushOnChat {
+  repeated PushModelMsg msgList = 1;
+}
