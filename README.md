@@ -1,8 +1,6 @@
-# gogame
-gameserver in golang
+服务器文件：server
 
+安装 pm2 后，执行
+sh rerun.sh
 
-用golang语言开发的游戏服务器，暂时仅支持tcp，后续会持续迭代。
-
-
-C# U3D 客户端https://github.com/lwcbest/gogame-u3dclient
+测试客户端：unit_test

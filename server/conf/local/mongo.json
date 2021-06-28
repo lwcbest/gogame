@@ -1,0 +1,10 @@
+{
+  "url": "localhost:27017",
+  "db": "game",
+  "auth_db": "",
+  "auth_user": "",
+  "auth_pass": "",
+  "timeout": 1000000000,
+  "pool_limit": 100,
+  "is_auth": false
+}

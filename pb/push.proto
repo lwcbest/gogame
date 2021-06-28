@@ -1,0 +1,161 @@
+syntax = "proto3";  //标明proto版本
+
+package gopb;  //包名
+
+//一个message相当于一个类
+// 1,2,3不代表参数默认值，而是参数标签
+// repeated 可以理解为数组
+
+
+//玩家准备发单个信息给所有人
+message OnPlayerReady {
+    string uid = 1;
+    repeated string select = 2;
+    int32 gender = 3;
+}
+
+message OnGameEnd {
+    message RoomAward {
+        string id = 1;
+        string couponName = 2;
+        string couponImg = 3;
+        string couponDesc = 4;
+        int32 aid = 5;
+    }
+    message LuckyPlayer {   
+        string uid = 1;
+        string name = 2;
+        string avaUrl = 3;
+        RoomAward award = 4;
+    }
+    message GameResult {
+        string uid = 1;
+        int32 score = 2;
+        int32 hit = 3;
+        int32 perfect = 4;
+        int32 star = 5;
+        RoomAward award = 6;
+    }
+    repeated GameResult result = 1;
+    int64 timestamp = 2;
+    LuckyPlayer LuckyStar = 3;
+}
+
+//frame
+message OnFrame {
+    message FCommand {
+        int32 exFrame = 1; //期望执行帧
+        int32 epFrame  = 2; //最终执行帧
+        string uid  = 3;
+        int32 ctype  = 4;
+        repeated int32 paramList = 5;
+    }
+    int32 curFrame = 1;
+    repeated FCommand commands = 2;
+}
+
+message PushCommonArgs {
+    message CommonArg {
+        string strVal1 = 1;
+        string strVal2 = 2;
+        int32 intVal1 = 3;
+        int32 intVal2 = 4;
+        int32 intVal3 = 5; 
+    }
+    repeated CommonArg args = 1;
+}   
+
+message OnPlayerEnterFRoom {
+    message PlayerInfo {
+        string uid = 1;
+        string name = 2;
+        string avaUrl = 3;
+        bool isReady = 4;
+        repeated string have = 6;
+        repeated string select = 7;
+        int32 gender = 8;
+    }
+    PlayerInfo player = 1;
+    int64 leftTIme = 2;
+}
+
+message OnRefreshWaitings {
+    message PlayerInfo{
+        string uid = 1;
+        string name = 2;
+        string avaUrl = 3;
+        bool isReady = 4;
+        repeated string have = 6;
+        repeated string select = 7;
+        int32 gender = 8;
+    }
+    repeated PlayerInfo waitings = 1;
+}
+
+message OnPlayerWatch {
+    message PlayerInfo {
+        string uid = 1;
+        string name = 2;
+        string avaUrl = 3;
+        bool isReady = 4;
+        repeated string have = 6;
+        repeated string select = 7;
+        int32 gender = 8;
+    }
+    PlayerInfo player = 1;
+    string tarUid = 2;
+}
+
+message OnPlayerClientEnter {
+    string uid = 1;
+}
+
+message OnPlayerUpvote {
+    message Upvote {
+        string uid = 1;
+        string tarUid = 2;
+        int32 num = 3;
+        int32 total = 4;
+    }
+    repeated Upvote upvotes = 1;
+}
+
+message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 6;
+    repeated string select = 7;
+    int32 gender = 8;
+}
+
+//--------------client proto--------------
+message OnSkipSyncCommandData
+{
+	string uid = 1;
+	string ctype = 2;
+    int32 x = 3;
+    int32 y = 4;
+    int32 dir = 5;
+    int32 state = 6;
+    int32 boxSpeed = 7;
+    int32 score = 8;
+    int32 time = 9;
+    int32 reqID = 10;
+    int32 jumpTime = 11;
+    int32 stopTime = 12;
+}
+
+//跳一跳房间状态
+message OnRoomState
+{
+    string uid = 1;
+    int32 boxCount = 2;
+    int32 score = 3;
+    int32 popularity = 4;
+    int32 leftGameTime = 5;
+    string maxPopularityUid = 6;
+    int32 playerIndex = 7;
+}
+//--------------client proto--------------

@@ -1,0 +1,124 @@
+{
+  "apps": [
+    {
+      "name": "master",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "master"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "dc1",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "dc1"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "dc2",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "dc2"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "net1",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "net1"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "net2",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "net2"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "game1",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "game1"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "game2",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "game2"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    },
+    {
+      "name": "match1",
+      "cwd": "./",
+      "script": "./127.0.0.1.json",
+      "instances": 1,
+      "exec_mode": "fork",
+      "interpreter": "../../server",
+      "watch": false,
+      "env": {
+        "name": "match1"
+      },
+      "merge_logs": true,
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "master": { "host": "127.0.0.1", "rootport": 9002, "debugport": 8001 },
+  "servers": {
+    "dc1": {
+      "host": "127.0.0.1",
+      "rootport": 9901,
+      "name": "dc1",
+      "module": "dc",
+      "log": "dc.log"
+    },
+    "dc2": {
+      "host": "127.0.0.1",
+      "rootport": 9902,
+      "name": "dc2",
+      "module": "dc",
+      "log": "dc.log"
+    },
+    "net1": {
+      "host": "127.0.0.1",
+      "rootport": 9201,
+      "name": "net1",
+      "module": "net",
+      "log": "net.log",
+      "remotes": ["game1", "game2", "dc1", "dc2", "match1"],
+      "http": [7001],
+      "netport": 8080,
+      "usews": true,
+      "url": "ws://127.0.0.1:8080/ws"
+    },
+    "net2": {
+      "host": "127.0.0.1",
+      "rootport": 9202,
+      "name": "net2",
+      "module": "net",
+      "log": "net.log",
+      "remotes": ["game1", "game2", "dc1", "dc2", "match1"],
+      "http": [7002],
+      "netport": 8081,
+      "usews": true,
+      "url": "ws://127.0.0.1:8081/ws"
+    },
+    "game1": {
+      "host": "127.0.0.1",
+      "rootport": 9401,
+      "name": "game1",
+      "module": "game",
+      "log": "game.log",
+      "remotes": ["net1", "net1", "dc1", "dc2"]
+    },
+    "game2": {
+      "host": "127.0.0.1",
+      "rootport": 9402,
+      "name": "game2",
+      "module": "game",
+      "log": "game.log",
+      "remotes": ["net1", "net2", "dc1", "dc2"]
+    },
+    "match1": {
+      "host": "127.0.0.1",
+      "rootport": 9301,
+      "name": "match1",
+      "module": "match",
+      "log": "match.log",
+      "remotes": ["net1", "net2", "dc1", "dc2", "game1", "game2"]
+    }
+  }
+}

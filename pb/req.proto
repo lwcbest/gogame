@@ -1,0 +1,124 @@
+syntax = "proto3";  //标明proto版本
+
+package gopb;  //包名
+
+//一个message相当于一个类
+// 1,2,3不代表参数默认值，而是参数标签
+// repeated 可以理解为数组
+
+// Net
+message ReqNetLogin {
+  string username = 1;
+  string password = 2;
+}
+
+message ReqNetEnterMatchQueue {
+  int32 level = 1;
+}
+
+//同步状态 data是二进制数据，需要再次解proto
+message ReqGameSyncState {
+  int32 sType = 1;
+  bytes data = 2;
+  string route = 3;  //客户端定义命令的时候需要使用
+  int32 tag = 4;     // 1表示状态2表示命令（命令服务端不存储）
+}
+
+message ReqGameSyncFCommand {
+  int32 exFrame = 1;  //期望执行帧
+  int32 epFrame = 2;  //最终执行帧
+  string uid = 3;
+  int32 ctype = 4;
+  repeated int32 paramList = 5;
+}
+
+message ReqNetCreateRoom {
+  string mac = 1;
+  string playMod = 2;
+  string fingerPrint = 3;
+  int32 itemId = 4;
+}
+
+message ReqNetEnterRoom {
+  string token = 1;
+  string deviceId = 2;
+}
+
+//从服务端进房间
+message ReqNetEnterRoomServer {
+  string roomId = 1;
+  string uid = 2;
+  string nickName = 3;
+  string avatarUrl = 4;
+  repeated string have = 5;
+  repeated string select = 6;
+  int32 gender = 7;
+}
+
+message ReqGameFPlayerReday {
+  repeated string select = 1;
+  int32 gender = 2;
+}
+
+//通用
+message ReqCommonArg {
+  string strVal1 = 1;
+  string strVal2 = 2;
+  int32 intVal1 = 3;
+  int32 intVal2 = 4;
+  int32 intVal3 = 5;
+}
+
+message ReqCommonArgs {
+  repeated ReqCommonArg args = 1;
+}
+
+//--------------client proto--------------
+message ReqSyncSnakeCmd {
+  string uid = 1;
+  int32 angle = 2;
+}
+
+message ReqSyncSnakeState {
+  repeated SnakeState states = 1;
+}
+
+message SnakeState {
+  int32 aiIndex = 1;
+  string uid = 2;
+  int32 score = 3;
+  int32 rank = 4;
+  int32 snakeLength = 5;
+}
+
+message ReqSkipSyncCommandData {
+  string uid = 1;
+  string ctype = 2;
+  int32 x = 3;
+  int32 y = 4;
+  int32 dir = 5;
+  int32 state = 6;
+  int32 boxSpeed = 7;
+  int32 score = 8;
+  int32 time = 9;
+  int32 reqID = 10;
+  int32 jumpTime = 11;
+  int32 stopTime = 12;
+}
+
+message ReqSyncPlayerData {
+  string uid = 1;
+  int32 boxCount = 2;
+  int32 score = 3;
+  int32 popularity = 4;
+  int32 leftGameTime = 5;
+  string maxPopularityUid = 6;
+  int32 playerIndex = 7;
+}
+//--------------client proto--------------
+
+//为了兼容线上只能在最后面加
+message ReqGamRandomAward {
+  int32 start = 1;
+  int32 steps = 2;
+}

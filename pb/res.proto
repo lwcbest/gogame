@@ -1,0 +1,294 @@
+syntax = "proto3";  //标明proto版本
+package gopb;       //包名
+
+// Net
+message ResNetLogin {
+  message Player {
+    string username = 1;
+    string uid = 2;
+    string name = 3;
+    string avaUrl = 4;
+    int32 score = 5;
+    int32 level = 6;
+  }
+
+  int32 code = 1;
+  string msg = 2;
+  Player player = 3;
+  string gameConfig = 4;
+}
+
+message ResNetEnterMatchQueue {
+  int32 code = 1;
+  string msg = 2;
+  string data = 3;
+}
+
+message ResError {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message ResVersionAddr {
+  int32 code = 1;
+  string msg = 2;
+  string url = 3;
+}
+
+//临时 帧同步房间
+message ResNetEnterFRoom {
+  message FCommand {
+    int32 exFrame = 1;  //期望执行帧
+    int32 epFrame = 2;  //最终执行帧
+    string uid = 3;
+    int32 ctype = 4;
+    repeated int32 paramList = 5;
+  }
+  message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 5;
+    repeated string select = 6;
+    int32 gender = 7;
+  }
+  message WatcherInfo {
+    string uid = 1;
+    string tarUid = 2;
+    int32 total = 3;
+    string name = 4;
+    string avaUrl = 5;
+  }
+  int32 code = 1;
+  string msg = 2;
+  int32 frameTime = 3;
+  int32 keyFrame = 4;
+  int64 randSeed = 5;
+  int32 roomState = 6;
+  repeated PlayerInfo players = 7;
+  repeated FCommand initCommands = 8;
+  repeated FCommand doingCommands = 9;
+  repeated string have = 10;
+  string serverId = 11;
+  string roomId = 12;
+  int32 curFrame = 13;
+  repeated WatcherInfo watchers = 14;
+  string config = 15;
+  int64 waitTime = 16;
+}
+
+message ResNetCreateFRoom {
+  message Rank {
+    string nickName = 1;
+    string avatarUrl = 2;
+    int32 gender = 3;
+    int32 score = 4;
+  }
+  message Star3Player {
+    string nickName = 1;
+    string avatarUrl = 2;
+    string itemName = 3;
+  }
+  message FCommand {
+    int32 exFrame = 1;  //期望执行帧
+    int32 epFrame = 2;  //最终执行帧
+    string uid = 3;
+    int32 ctype = 4;
+    repeated int32 paramList = 5;
+  }
+  message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 5;
+    repeated string select = 6;
+    int32 gender = 7;
+  }
+  message WatcherInfo {
+    string uid = 1;
+    string tarUid = 2;
+    int32 total = 3;
+    string name = 4;
+    string avaUrl = 5;
+  }
+  message RoomAward {
+    string id = 1;
+    string couponName = 2;
+    string couponImg = 3;
+    string couponDesc = 4;
+    int32 weight = 5;
+    int32 stock = 6;
+  }
+  int32 code = 1;
+  string msg = 2;
+  int32 roomState = 3;
+  int64 waitTime = 4;
+  string qrUrl = 5;
+  int32 frameTime = 6;
+  int32 keyFrame = 7;
+  int64 randSeed = 8;
+  repeated FCommand initCommands = 9;
+  repeated FCommand doingCommands = 10;
+  repeated RoomAward star1Awards = 11;
+  repeated RoomAward star2Awards = 12;
+  repeated RoomAward star3Awards = 13;
+  repeated Star3Player star3Players = 15;
+  repeated PlayerInfo players = 16;
+  repeated PlayerInfo waitings = 17;
+  repeated WatcherInfo watchers = 18;
+  int32 curFrame = 19;
+  int64 roundId = 20;
+  string config = 21;
+}
+
+//大屏创建状态同步房间
+message ResNetCreateSRoom {
+  message RoomState {
+    string uid = 1;
+    bytes data = 2;
+  }
+  message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 5;
+    repeated string select = 6;
+    int32 gender = 7;
+  }
+  message WatcherInfo {
+    string uid = 1;
+    string tarUid = 2;
+    int32 total = 3;
+    string name = 4;
+    string avaUrl = 5;
+  }
+  message RoomAward {
+    string id = 1;
+    string couponName = 2;
+    string couponImg = 3;
+    string couponDesc = 4;
+    int32 weight = 5;
+    int32 stock = 6;
+  }
+  message Star3Player {
+    string nickName = 1;
+    string avatarUrl = 2;
+    string itemName = 3;
+  }
+  int32 code = 1;
+  string msg = 2;
+  string serverId = 3;
+  string roomId = 4;
+  string qrUrl = 5;
+  int32 roomState = 6;  // 1准备阶段2已经准备3游戏中
+  int64 waitTime = 7;
+  int64 runTime = 8;
+  repeated RoomAward star1Awards = 9;
+  repeated RoomAward star2Awards = 10;
+  repeated RoomAward star3Awards = 11;
+  repeated Star3Player star3Players = 12;
+  repeated PlayerInfo players = 13;
+  repeated PlayerInfo waitings = 14;
+  repeated WatcherInfo watchers = 15;
+  repeated RoomState syncStates = 16;
+  int64 roundId = 17;
+  string config = 18;
+  int64 randSeed = 19;
+}
+
+//玩家进入状态同步房间
+message ResNetEnterSRoom {
+  message RoomState {
+    string uid = 1;
+    bytes data = 2;
+  }
+  message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 5;
+    repeated string select = 6;
+    int32 gender = 7;
+  }
+  message WatcherInfo {
+    string uid = 1;
+    string tarUid = 2;
+    int32 total = 3;
+    string name = 4;
+    string avaUrl = 5;
+  }
+  int32 code = 1;
+  string msg = 2;
+  int32 roomState = 3;  // 1准备阶段2已经准备3游戏中
+  int64 waitTime = 4;
+  int64 runTime = 5;
+  repeated string have = 6;
+  repeated string select = 7;
+  repeated PlayerInfo players = 8;
+  repeated WatcherInfo watchers = 9;
+  repeated RoomState syncStates = 10;
+  string config = 11;
+  int64 randSeed = 12;
+}
+
+//--------------client proto--------------
+message ResSyncPlayerData {
+  string uid = 1;
+  int32 boxCount = 2;
+  int32 score = 3;
+  int32 popularity = 4;
+  int32 leftGameTime = 5;
+  string maxPopularityUid = 6;
+  int32 playerIndex = 7;
+}
+//--------------client proto--------------
+
+message ResGamRandomAward {
+  int32 code = 1;
+  string msg = 2;
+  string id = 3;
+  string couponName = 4;
+  string couponImg = 5;
+  string couponDesc = 6;
+}
+
+message ResNetEnterTRoom {
+  message RoomState {
+    string uid = 1;
+    bytes data = 2;
+  }
+  message PlayerInfo {
+    string uid = 1;
+    string name = 2;
+    string avaUrl = 3;
+    bool isReady = 4;
+    repeated string have = 5;
+    repeated string select = 6;
+    int32 gender = 7;
+  }
+  message RoomAward {
+    string id = 1;
+    string couponName = 2;
+    string couponImg = 3;
+    string couponDesc = 4;
+    int32 weight = 5;
+    int32 stock = 6;
+  }
+  int32 code = 1;
+  string msg = 2;
+  int64 waitTime = 3;
+  int64 runTime = 4;
+  repeated string have = 5;
+  repeated string select = 6;
+  repeated PlayerInfo players = 7;
+  repeated RoomState syncStates = 8;
+  string config = 9;
+  repeated RoomAward star1Awards = 10;
+  repeated RoomAward star2Awards = 11;
+  repeated RoomAward star3Awards = 12;
+  int64 randSeed = 13;
+}
