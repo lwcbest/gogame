@@ -74,7 +74,8 @@ func init() {
 
 		if Session := SessionService.Get(sessionId); Session != nil {
 			logger.Info("GlobalObject.OnClosed %v sid:%s addr: %v", sessionId, Session.GetId(), conn.RemoteAddr())
-			SessionService.GetRootCluster().RpcPushServerType(Session, "game", "PlayerOffline")
+		//TODO push msg
+			//SessionService.GetRootCluster().RpcPushServerType(Session, "game", "PlayerOffline")
 			// rpc.RpcCallServerType(Session, "game", "PlayerOffline")
 			Session.Closed("lost connection")
 		} else {

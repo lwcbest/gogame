@@ -2,11 +2,12 @@ package match
 
 import (
 	"container/list"
-	"gameserver-997/server/base/clusterserver"
+	"gameserver-997/server/base/iface"
 	"gameserver-997/server/base/logger"
 	"gameserver-997/server/constants"
 	"gameserver-997/server/domain/clock"
 	"gameserver-997/server/domain/entity"
+	"gameserver-997/server/util/rpc"
 	"sync"
 	"time"
 )
@@ -100,18 +101,22 @@ func (this *MatchPool) compute(playerCount int) {
 	roomType := constants.ROOM_TYPE_FRAME
 	roomMode := "grade1"
 
-	rpcRes, err := clusterserver.GlobalClusterServer.RpcRandomCallServerType(nil, "game", "CreateRoom", roomType, roomMode)
+	rpcRes, err := rpc.RPCRandomCall(nil, "game", "CreateRoom", roomType, roomMode)
 	if err != nil {
 		logger.Fatal("err:%v", err)
 	}
 	gameServerName := rpcRes["serverName"]
 	roomId := rpcRes["roomId"]
 
+	sessionArray := make([]iface.ISession,0)
 	for i := 0; i < playerCount; i++ {
 		logger.Info("[Call][PlayerEnterGame]%v", ps[i])
-		clusterserver.GlobalClusterServer.RpcCallServerId(nil, ps[i].FeServerId, "PlayerEnterGame", roomId, gameServerName, ps[i].SessionId)
+		rpc.RPCCall(nil, ps[i].FeServerId, "PlayerEnterGame", roomId, gameServerName, ps[i].SessionId)
+		sessionArray = append(sessionArray,ps[i].GetFakeSessionInfo())
 	}
+
 	//push alls
+	rpc.PushMsgByUids("OnEnterRoom","ok",sessionArray)
 	//channelService := utils.GlobalObject.TcpServer.GetChannelService()
 	//channelService.PushMsgByUids()
 }

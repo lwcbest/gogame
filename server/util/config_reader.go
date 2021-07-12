@@ -47,7 +47,6 @@ var (
 	EnvConf   *EnvConfig
 	RedisConf *RedisConfig
 	MongoConf *MongoConfig
-	MailConf  *MailConfig
 )
 
 func IsOnline() bool {
@@ -66,8 +65,6 @@ func init() {
 	readConfig(env, "redis.json", RedisConf)
 	MongoConf = &MongoConfig{}
 	readConfig(env, "mongo.json", MongoConf)
-	MailConf = &MailConfig{}
-	readConfig(env, "mail.json", MailConf)
 }
 
 func readConfig(env string, filePath string, v interface{}) {

@@ -19,7 +19,7 @@ type IChannelService interface {
 	AddChannel(name string, channel IChannel)
 	GetChannel(name string) IChannel
 	DestroyChannel(name string)
-	PushMsgByUids(route string, msg interface{}, uidMap map[string]string)
+	PushMsgByUids(route string, msg interface{}, sessionArray []ISession)
 	GetRootCluster() Icluster
 	GetRootServer() Iserver
 }

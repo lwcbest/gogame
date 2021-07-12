@@ -38,8 +38,22 @@ func (this *ChannelService) DestroyChannel(name string) {
 	this.Channels.Delete(name)
 }
 
-func (this *ChannelService) PushMsgByUids(route string, msg interface{}, uidMap map[string]string) {
+func (this *ChannelService) PushMsgByUids(route string, msg interface{}, sessionArray []iface.ISession) {
 	//rpc send serverId,msg
+	serverUserMap := make(map[string][]string)
+	for _, session := range sessionArray {
+		uid := session.GetUid()
+		serverId := session.GetServerId()
+		if serverUserMap[serverId] == nil {
+			serverUserMap[serverId] = make([]string, 0)
+		}
+		serverUserMap[serverId] = append(serverUserMap[serverId], uid)
+	}
+
+	for serverId, uids := range serverUserMap {
+		newArgs := []interface{}{uids, route, msg}
+		this.RootCluster.RpcPushServerName(serverId, "PushMessage", newArgs...)
+	}
 }
 
 type Channel struct {
@@ -110,23 +124,4 @@ func (this *Channel) PushMessage(route string, args ...interface{}) {
 	// 		logger.Error("PushMessage failed!", route, serverId, group, err)
 	// 	}
 	// }, end)
-}
-
-func (this *Channel) PushMessageByUids(uids []string, route string, args ...interface{}) {
-	// groups := make(map[string][]string)
-	// for _, uid := range uids {
-	// 	feServerId, ok := this.UidMap[uid]
-	// 	if ok {
-	// 		groups[feServerId] = append(groups[feServerId], uid)
-	// 	} else {
-	// 		logger.Error("PushMessageByUids failed no serverId ", route, uid)
-	// 	}
-	// }
-	// for serverId, group := range groups {
-	// 	newArgs := append([]interface{}{group, route}, args...)
-	// 	err := this.channelService.RootCluster.RpcPushServerName(serverId, "PushMessage", newArgs...)
-	// 	if err != nil {
-	// 		logger.Error("PushMessage failed!", route, serverId, group, err)
-	// 	}
-	// }
 }

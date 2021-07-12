@@ -309,19 +309,15 @@ func (this *ClusterServer) ConnectToRemote(rname string) {
 
 func (this *ClusterServer) AddRouter(router interface{}) {
 	if utils.GlobalObject.Protoc != nil {
-		//add api ---------------start
 		utils.GlobalObject.Protoc.AddRpcRouter(router)
-		//add api ---------------end
 	}
 }
 
 func (this *ClusterServer) AddRpcRouter(router interface{}) {
-	//add api ---------------start
 	utils.GlobalObject.RpcCProtoc.AddRpcRouter(router)
 	if utils.GlobalObject.RpcSProtoc != nil {
 		utils.GlobalObject.RpcSProtoc.AddRpcRouter(router)
 	}
-	//add api ---------------end
 }
 
 /*
@@ -464,20 +460,19 @@ func (this *ClusterServer) RpcSystemCallServerType(session iface.ISession, serve
 	return rpcData.Result, nil
 }
 
-func (this *ClusterServer) RpcPushServerType(session iface.ISession, serverType string, target string, args ...interface{}) error {
-	var tarServer *cluster.Child
-	var err error
-	preferKey := fmt.Sprintf("SERVER_PREFER:%s", serverType)
-	if serverName := session.Get(preferKey); serverName != nil {
-		tarServer, err = GlobalClusterServer.RemoteNodesMgr.GetChild(serverName.(string))
+func (this *ClusterServer) RpcPushServerId(session iface.ISession, serverId string, target string, args ...interface{}) error {
+	tarServer, err := GlobalClusterServer.RemoteNodesMgr.GetChild(serverId)
+	if err != nil {
+		return err
 	}
-	if tarServer == nil {
-		tarServer = GlobalClusterServer.RemoteNodesMgr.GetRandomChild(serverType)
+	
+	var newArgs []interface{}
+	if session != nil {
+		newArgs = append([]interface{}{session.BackendSession()}, args...)
+	} else {
+		newArgs = append([]interface{}{args[0]}, args[1:]...)
 	}
-	if tarServer == nil {
-		return errors.New(fmt.Sprintf("target server by type %s not found", serverType))
-	}
-	newArgs := append([]interface{}{session.BackendSession()}, args...)
+
 	err = tarServer.CallChildNotForResult(target, newArgs...)
 	if err != nil {
 		return err

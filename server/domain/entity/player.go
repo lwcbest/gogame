@@ -1,6 +1,8 @@
 package entity
 
 import (
+	"gameserver-997/server/base/iface"
+	"gameserver-997/server/base/service"
 	"strings"
 	"time"
 )
@@ -56,6 +58,10 @@ func GenPlayer(username, pwd string) *Player {
 
 func (this *Player) IsReady() bool {
 	return this.State == PLAYER_STATE_START || this.State == PLAYER_STATE_READY
+}
+
+func (this *Player) GetFakeSessionInfo() iface.ISession {
+	return &service.Session{FrontendId: this.FeServerId,Uid: this.Uid}
 }
 
 //玩家非计数道具
